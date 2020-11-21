@@ -1,0 +1,53 @@
+<odoo>
+    <data>
+        <record id="paperformat_dot_matrix" model="report.paperformat">
+            <field name="name">Paper format Dot Matrix</field>
+            <field name="default" eval="True" />
+            <field name="format">A5</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">3</field>
+            <field name="margin_bottom">3</field>
+            <field name="margin_left">3</field>
+            <field name="margin_right">3</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">35</field>
+            <field name="dpi">300</field>
+        </record>
+        <report
+            id="account_invoices_dot_matrix_template"
+            model="account.move"
+            string="Invoices Dot Matrix"
+            report_type="qweb-pdf"
+            name="report_dot_matrix.report_invoice_dot_matrix_document"
+            file="report_dot_matrix.report_invoice_dot_matrix_document"
+            attachment="(object.state == 'posted') and ((object.name or 'INV').replace('/','_')+'.pdf')"
+            print_report_name="(object._get_report_base_filename())"
+            paperformat="paperformat_dot_matrix"
+            groups="account.group_account_invoice"
+        />
+        <!-- <report 
+            id="action_report_saleorder_thermal_template"
+            model="sale.order" 
+            string="Quotation / Order Ticket"
+            report_type="qweb-pdf"
+            name="report_invoice_thermal.report_saleorder_thermal_document"
+            file="report_invoice_thermal.report_saleorder_thermal_document" 
+            print_report_name="(object.state in ('draft', 'sent') and 'Quotation - %s' % (object.name)) or 'Order - %s' % (object.name)"
+            paperformat="paperformat_thermal"
+        />
+        <report 
+            id="action_report_purchase_order_thermal_template" 
+            model="purchase.order" 
+            string="Purchase Order Ticket" 
+            report_type="qweb-pdf"
+            name="report_invoice_thermal.report_purchaseorder_thermal_template" 
+            file="report_invoice_thermal.report_purchaseorder_thermal_template"
+            paperformat="paperformat_thermal"
+            print_report_name="
+                (object.state in ('draft', 'sent') and 'Request for Quotation - %s' % (object.name) or
+                'Purchase Order - %s' % (object.name))"
+        /> -->
+    </data>
+</odoo>
