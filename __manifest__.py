@@ -25,9 +25,9 @@
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
-        'report/report_template.xml',
-        'report/report.xml',
+        'report/report_sales_orders.xml',
         'report/report_invoice_dot.xml',
+        'report/report.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
